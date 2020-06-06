@@ -40,7 +40,7 @@ class AuthService
     public function register(string $email, string $password)
     {
         try {
-            $this->firebaseConnector->auth()->login($email, $password);
+            $this->firebaseConnector->auth()->register($email, $password);
         }
         catch (FirebaseApiException $e) {
             throw new ApiException($e);

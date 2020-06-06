@@ -24,7 +24,7 @@
 
 <script>
     import {URLS} from '../../base/enums'
-    import {LOGIN_ERROR_CODES} from '../../base/enums'
+    import {REGISTER_ERROR_CODES} from '../../base/enums'
     import axios from '../../../node_modules/axios';
 
     export default {
@@ -78,17 +78,17 @@
                     .post(URLS.REGISTER_URL, formData)
                     .then((data) => {
                             if (data.data.errorCode) {
-                                if (data.data.errorCode === LOGIN_ERROR_CODES.EMAIL_NOT_FOUND) {
+                                if (data.data.errorCode === REGISTER_ERROR_CODES.EMAIL_NOT_FOUND) {
                                     this.emailErrors.push('Email not found.');
                                 }
-                                else if (data.data.errorCode === LOGIN_ERROR_CODES.INVALID_EMAIL) {
+                                else if (data.data.errorCode === REGISTER_ERROR_CODES.INVALID_EMAIL) {
                                     this.emailErrors.push('Invalid email.');
                                 }
-                                else if (data.data.errorCode === LOGIN_ERROR_CODES.INVALID_PASSWORD) {
-                                    this.passwordErrors.push('Invalid password.');
+                                else if (data.data.errorCode === REGISTER_ERROR_CODES.EMAIL_EXISTS) {
+                                    this.emailErrors.push('Email already exists in system.');
                                 }
-                                else if (data.data.errorCode === LOGIN_ERROR_CODES.USER_DISABLED) {
-                                    this.emailErrors.push('User disabled by administrator.');
+                                else {
+                                    this.passwordErrors.push('Insecure password. It must be at least 6 symbols.');
                                 }
                             }
                             this.enableButton();
