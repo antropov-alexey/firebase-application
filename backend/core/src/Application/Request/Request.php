@@ -22,4 +22,14 @@ class Request
     {
         return (string) $_SERVER['REQUEST_URI'];
     }
+
+    /**
+     * @return array
+     */
+    public function getPostData(): array
+    {
+        $input = file_get_contents('php://input');
+
+        return json_decode($input, true);
+    }
 }

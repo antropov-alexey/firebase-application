@@ -5,6 +5,7 @@ namespace App\Application\Routing\Controller;
 use App\Application\Enum\ResponseStatuses;
 use App\Application\Request\Request;
 use App\Application\Response\Response;
+use JsonSerializable;
 
 class AbstractController
 {
@@ -16,6 +17,16 @@ class AbstractController
     protected function success(string $content): Response
     {
         return new Response($content, ResponseStatuses::OK);
+    }
+
+    /**
+     * @param JsonSerializable $content
+     *
+     * @return Response
+     */
+    protected function json(JsonSerializable $content): Response
+    {
+        return new Response(json_encode($content), ResponseStatuses::OK);
     }
 
     /**

@@ -13,7 +13,9 @@
         }
     ],
     "require": {
-        "alexey/firebase-connector": "dev-master"
+        "alexey/firebase-connector": "dev-master",
+        "vlucas/phpdotenv": "^4.1",
+        "ext-json": "*"
     },
     "autoload": {
         "psr-4": {

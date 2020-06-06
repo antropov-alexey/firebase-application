@@ -2,6 +2,7 @@
 
 namespace App\Auth;
 
+use App\Exception\ApiException;
 use App\Exception\FirebaseApiException;
 use App\FirebaseConnector;
 
@@ -14,12 +15,35 @@ class AuthService
         $this->firebaseConnector = $firebaseConnector;
     }
 
+    /**
+     * @param string $email
+     * @param string $password
+     *
+     * @throws ApiException
+     */
     public function login(string $email, string $password)
     {
         try {
-            $response = $this->firebaseConnector->auth()->login($email, $password);
+            $this->firebaseConnector->auth()->login($email, $password);
         }
         catch (FirebaseApiException $e) {
+            throw new ApiException($e);
+        }
+    }
+
+    /**
+     * @param string $email
+     * @param string $password
+     *
+     * @throws ApiException
+     */
+    public function register(string $email, string $password)
+    {
+        try {
+            $this->firebaseConnector->auth()->login($email, $password);
+        }
+        catch (FirebaseApiException $e) {
+            throw new ApiException($e);
         }
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Application\Enum;
 
 use App\Http\Routes\Auth\LoginRoute;
+use App\Http\Routes\Auth\RegisterRoute;
 use App\Http\Routes\MainRoute;
 
 abstract class Routes
@@ -10,8 +11,9 @@ abstract class Routes
     private static function getMap()
     {
         return [
-            '/'      => MainRoute::class,
-            '/login' => LoginRoute::class,
+            '/'         => MainRoute::class,
+            '/login'    => LoginRoute::class,
+            '/register' => RegisterRoute::class,
         ];
     }
 

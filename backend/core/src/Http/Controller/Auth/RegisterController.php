@@ -11,7 +11,7 @@ use App\Application\Routing\Controller\ControllerInterface;
 use App\Auth\AuthService;
 use App\Exception\ApiException;
 
-class LoginController extends AbstractController implements ControllerInterface
+class RegisterController extends AbstractController implements ControllerInterface
 {
     private AuthService $authService;
 
@@ -42,7 +42,7 @@ class LoginController extends AbstractController implements ControllerInterface
      */
     private function handleGetRequest(Request $request): Response
     {
-        return $this->render('auth/login', $request);
+        return $this->render('auth/register', $request);
     }
 
     /**
@@ -58,7 +58,7 @@ class LoginController extends AbstractController implements ControllerInterface
         $password = $post['password'] ?? '';
 
         try {
-            $this->authService->login($email, $password);
+            $this->authService->register($email, $password);
 
             return $this->json(new SuccessResponse());
         }

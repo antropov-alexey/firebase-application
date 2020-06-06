@@ -6,16 +6,16 @@ use App\App;
 use App\Application\Enum\RequestMethods;
 use App\Application\Routing\Controller\ControllerInterface;
 use App\Application\Routing\RouterInterface;
-use App\Http\Controller\Auth\LoginController;
+use App\Http\Controller\Auth\RegisterController;
 
-class LoginRoute implements RouterInterface
+class RegisterRoute implements RouterInterface
 {
     /**
      * @return string
      */
     public function getPath(): string
     {
-        return '/login';
+        return '/register';
     }
 
     /**
@@ -32,7 +32,7 @@ class LoginRoute implements RouterInterface
      */
     public function getController(): ControllerInterface
     {
-        return new LoginController(App::AuthService());
+        return new RegisterController(App::AuthService());
     }
 
     /**

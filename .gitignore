@@ -1,3 +1,6 @@
 /backend/vendor/
+/backend/public/mix-manifest.json
+/backend/public/dist/
 /frontend/node_modules/
 /.idea/
+.env
