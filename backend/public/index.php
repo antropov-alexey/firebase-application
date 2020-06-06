@@ -1,4 +1,7 @@
 <?php
 
+use App\App;
 
-var_dump(123);
+require_once __DIR__ . '/../core/bootstrap/bootstrap.php';
+
+App::Application()->processRequest();

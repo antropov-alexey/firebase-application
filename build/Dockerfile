@@ -1,8 +1,14 @@
 FROM php:7.4-fpm
 
-COPY . /web
+# install composer
+RUN apt-get update && \
+    apt-get install -y \
+    git \
+    curl && \
+    curl -s https://getcomposer.org/installer | php && \
+    mv composer.phar /usr/local/bin/composer
 
-RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+COPY . /web
 
 WORKDIR /web
 
