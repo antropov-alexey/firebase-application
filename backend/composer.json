@@ -15,7 +15,8 @@
     "require": {
         "alexey/firebase-connector": "dev-master",
         "vlucas/phpdotenv": "^4.1",
-        "ext-json": "*"
+        "ext-json": "*",
+        "firebase/php-jwt": "^5.2"
     },
     "autoload": {
         "psr-4": {
