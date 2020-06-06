@@ -1,0 +1,19 @@
+{
+    "authors": [
+        {
+            "name": "a.antropov",
+            "email": "antropofffff@gmail.com"
+        }
+    ],
+    "name": "alexey/firebase-application",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:Alexey2369/firebase-connector.git"
+        }
+    ],
+    "require": {
+        "alexey/firebase-connector": "dev-master"
+    },
+    "type": "project"
+}

@@ -1,0 +1,22 @@
+version: '3.7'
+
+networks:
+  application:
+    driver: bridge
+
+services:
+  php-fpm:
+    build:
+      context: .
+      dockerfile: './build/Dockerfile'
+    networks:
+      - application
+
+  nginx:
+    image: nginx:latest
+    depends_on:
+      - php-fpm
+    networks:
+      - application
+    ports:
+      - '80:80'
