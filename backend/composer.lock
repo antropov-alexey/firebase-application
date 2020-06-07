@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Alexey2369/firebase-connector.git",
-                "reference": "e345881491ea7828fae3ee9ce1ebd64e07ad9a1f"
+                "reference": "aa758af5b18947522633db81ebdaec5878f00adc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Alexey2369/firebase-connector/zipball/e345881491ea7828fae3ee9ce1ebd64e07ad9a1f",
-                "reference": "e345881491ea7828fae3ee9ce1ebd64e07ad9a1f",
+                "url": "https://api.github.com/repos/Alexey2369/firebase-connector/zipball/aa758af5b18947522633db81ebdaec5878f00adc",
+                "reference": "aa758af5b18947522633db81ebdaec5878f00adc",
                 "shasum": ""
             },
             "require": {
@@ -41,7 +41,7 @@
                 "source": "https://github.com/Alexey2369/firebase-connector/tree/master",
                 "issues": "https://github.com/Alexey2369/firebase-connector/issues"
             },
-            "time": "2020-06-06T13:28:55+00:00"
+            "time": "2020-06-07T11:40:54+00:00"
         },
         {
             "name": "firebase/php-jwt",

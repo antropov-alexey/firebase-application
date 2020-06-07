@@ -4,6 +4,9 @@ namespace App\Application;
 
 use App\Application\Request\Request;
 use App\Application\Routing\RoutingFactory;
+use App\Http\Middleware\CheckAuthorizeMiddleware;
+use App\Http\Middleware\CheckJWTTokensMiddleware;
+use App\Http\Middleware\MiddlewareInterface;
 
 class Application
 {
@@ -23,8 +26,24 @@ class Application
 
         $router = $this->routingFactory->getRouter($request);
 
+        /** @var MiddlewareInterface $middleware */
+        foreach ($this->getMiddleWares() as $middleware) {
+            $middleware->process($request, $router);
+        }
+
         $response = $router->getController()->getResponse($request);
 
         echo $response->getContent();
+    }
+
+    /**
+     * @return MiddlewareInterface[]
+     */
+    private function getMiddleWares(): array
+    {
+        return [
+            CheckAuthorizeMiddleware::make(),
+            CheckJWTTokensMiddleware::make(),
+        ];
     }
 }

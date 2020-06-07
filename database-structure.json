@@ -1,0 +1,17 @@
+{
+  "documents": {
+    "title": "string",
+    "content": "string",
+    "createdAt": "string"
+  },
+  "users": {
+    "name": "string",
+    "surname": "string",
+    "email": "string"
+  },
+  "files": {
+    "type": "string",
+    "fileLink": "string",
+    "authorId": "string"
+  }
+}

@@ -17,6 +17,23 @@ abstract class Routes
         ];
     }
 
+    public static function getAllowedPathsForNotAuthorized()
+    {
+        return [
+            '/',
+            '/login',
+            '/register',
+        ];
+    }
+
+    public static function getNotAllowedPathsForAuthorized()
+    {
+        return [
+            '/login',
+            '/register',
+        ];
+    }
+
     /**
      * @param string $uri
      *

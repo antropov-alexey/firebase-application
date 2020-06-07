@@ -57,4 +57,10 @@ class AbstractController
 
         return new Response($content, ResponseStatuses::OK);
     }
+
+    public function redirect(string $to)
+    {
+        header("Location: {$to}");
+        die;
+    }
 }
