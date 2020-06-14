@@ -1,4 +1,5 @@
 /backend/vendor/
+/backend/public/.storage/
 /backend/public/mix-manifest.json
 /backend/public/dist/
 /frontend/node_modules/

@@ -18,6 +18,7 @@ class RoutingFactory
         $routerClass = Routes::getRouterClass($request->getUri());
 
         if ( ! $routerClass) {
+
             $router = $this->getDefault();
         }
         else {

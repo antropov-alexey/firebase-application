@@ -5,6 +5,7 @@ namespace App\Auth;
 use App\Api\Auth;
 use App\Application\Cookie\CookieKeys;
 use App\Application\Cookie\CookieService;
+use App\Application\Redis\RedisWrapper;
 use App\Application\Session\SessionKeys;
 use App\Application\Session\SessionService;
 use App\Auth\Jwt\JwtWrapper;
@@ -20,13 +21,15 @@ class AuthService
     private UserService    $userService;
     private CookieService  $cookieService;
     private SessionService $sessionService;
+    private RedisWrapper   $redisWrapper;
 
     public function __construct(
         Auth $auth,
         JwtWrapper $jwtWrapper,
         UserService $userService,
         CookieService $cookieService,
-        SessionService $sessionService
+        SessionService $sessionService,
+        RedisWrapper $redisWrapper
     )
     {
         $this->auth           = $auth;
@@ -34,6 +37,7 @@ class AuthService
         $this->userService    = $userService;
         $this->cookieService  = $cookieService;
         $this->sessionService = $sessionService;
+        $this->redisWrapper   = $redisWrapper;
     }
 
     /**
@@ -141,5 +145,39 @@ class AuthService
         $userId = $this->sessionService->get(SessionKeys::USER_ID);
 
         return $userId ? $this->userService->getById($userId) : null;
+    }
+
+    public function getAccessToken()
+    {
+        $accessToken = $this->redisWrapper->getAccessToken();
+
+        if ( ! $accessToken) {
+            $refreshToken = $this->redisWrapper->getRefreshToken();
+
+            if ($refreshToken) {
+                $accessTokenResponse = $this->auth->refreshAccessToken($refreshToken);
+
+                $this->redisWrapper->setAccessToken(
+                    $accessTokenResponse->getExpiresIn(),
+                    $accessTokenResponse->getAccessToken()
+                );
+
+                $accessToken = $accessTokenResponse->getAccessToken();
+            }
+            else {
+                $accessTokenResponse = $this->auth->getAccessToken();
+
+                $this->redisWrapper->setAccessToken(
+                    $accessTokenResponse->getExpiresIn(),
+                    $accessTokenResponse->getAccessToken()
+                );
+
+                $this->redisWrapper->setRefreshToken($accessTokenResponse->getRefreshToken());
+
+                $accessToken = $accessTokenResponse->getAccessToken();
+            }
+        }
+
+        return $accessToken;
     }
 }

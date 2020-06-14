@@ -10,6 +10,7 @@ use App\Application\Routing\Controller\AbstractController;
 use App\Application\Routing\Controller\ControllerInterface;
 use App\Auth\AuthService;
 use App\Exception\ApiException;
+use App\Exception\FirebaseApiException;
 
 class RegisterController extends AbstractController implements ControllerInterface
 {
@@ -28,7 +29,7 @@ class RegisterController extends AbstractController implements ControllerInterfa
     public function getResponse(Request $request): Response
     {
         if ($request->getMethod() === RequestMethods::GET) {
-            return $this->handleGetRequest($request);
+            return $this->handleGetRequest();
         }
         else {
             return $this->handlePostRequest($request);
@@ -36,19 +37,18 @@ class RegisterController extends AbstractController implements ControllerInterfa
     }
 
     /**
-     * @param Request $request
-     *
      * @return Response
      */
-    private function handleGetRequest(Request $request): Response
+    private function handleGetRequest(): Response
     {
-        return $this->render('auth/register', $request);
+        return $this->render('auth/register');
     }
 
     /**
      * @param Request $request
      *
      * @return Response
+     * @throws FirebaseApiException
      */
     private function handlePostRequest(Request $request): Response
     {
@@ -56,9 +56,10 @@ class RegisterController extends AbstractController implements ControllerInterfa
 
         $email    = $post['email'] ?? '';
         $password = $post['password'] ?? '';
+        $name     = $post['name'] ?? '';
 
         try {
-            $this->authService->register($email, $password);
+            $this->authService->register($email, $password, $name);
 
             return $this->json(new SuccessResponse());
         }

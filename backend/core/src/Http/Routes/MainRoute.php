@@ -2,6 +2,7 @@
 
 namespace App\Http\Routes;
 
+use App\App;
 use App\Application\Enum\RequestMethods;
 use App\Application\Routing\Controller\ControllerInterface;
 use App\Application\Routing\RouterInterface;
@@ -31,7 +32,7 @@ class MainRoute implements RouterInterface
      */
     public function getController(): ControllerInterface
     {
-        return new MainController();
+        return new MainController(App::AuthService());
     }
 
     /**

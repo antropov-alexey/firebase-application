@@ -40,12 +40,12 @@ class AbstractController
     }
 
     /**
-     * @param string  $templatePath
-     * @param Request $request
+     * @param string $templatePath
+     * @param array  $variables
      *
      * @return Response
      */
-    protected function render(string $templatePath, Request $request): Response
+    protected function render(string $templatePath, array $variables = []): Response
     {
         ob_start();
 

@@ -19,10 +19,25 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.lis
 # install standart packages
 apt-get update && \
     apt-get install -y \
+    software-properties-common \
     git \
+    wget \
+    unzip \
     nodejs \
     yarn \
-    libpng-dev
+    libpng-dev \
+    libjpeg-dev \
+    libfreetype6-dev
+
+RUN docker-php-ext-configure gd \
+--with-freetype=/usr/include/ \
+--with-jpeg=/usr/include/ \
+&& \
+docker-php-ext-install gd \
+&& \
+docker-php-ext-enable gd
+
+RUN pecl install redis && docker-php-ext-enable redis
 
 COPY . /web
 

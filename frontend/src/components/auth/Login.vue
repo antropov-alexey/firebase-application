@@ -91,6 +91,9 @@
                                     this.emailErrors.push('User disabled by administrator.');
                                 }
                             }
+                            else if (data.data.state === 'success') {
+                                window.location.href = URLS.MAIN_PAGE;
+                            }
                             this.enableButton();
                         }
                     );

@@ -91,6 +91,9 @@
                                     this.passwordErrors.push('Insecure password. It must be at least 6 symbols.');
                                 }
                             }
+                            else if (data.data.state === 'success') {
+                                window.location.href = URLS.MAIN_PAGE;
+                            }
                             this.enableButton();
                         }
                     );

@@ -16,7 +16,10 @@
         "alexey/firebase-connector": "dev-master",
         "vlucas/phpdotenv": "^4.1",
         "ext-json": "*",
-        "firebase/php-jwt": "^5.2"
+        "firebase/php-jwt": "^5.2",
+        "nesbot/carbon": "^2.35",
+        "ext-redis": "*",
+        "ext-gd": "*"
     },
     "autoload": {
         "psr-4": {

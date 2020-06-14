@@ -20,7 +20,7 @@ class Request
      */
     public function getUri(): string
     {
-        return (string) $_SERVER['REQUEST_URI'];
+        return (string) explode('?', $_SERVER['REQUEST_URI'])[0];
     }
 
     /**

@@ -10,6 +10,7 @@ use App\Application\Routing\Controller\AbstractController;
 use App\Application\Routing\Controller\ControllerInterface;
 use App\Auth\AuthService;
 use App\Exception\ApiException;
+use App\Exception\FirebaseApiException;
 
 class LoginController extends AbstractController implements ControllerInterface
 {
@@ -24,11 +25,12 @@ class LoginController extends AbstractController implements ControllerInterface
      * @param Request $request
      *
      * @return Response
+     * @throws FirebaseApiException
      */
     public function getResponse(Request $request): Response
     {
         if ($request->getMethod() === RequestMethods::GET) {
-            return $this->handleGetRequest($request);
+            return $this->handleGetRequest();
         }
         else {
             return $this->handlePostRequest($request);
@@ -36,19 +38,18 @@ class LoginController extends AbstractController implements ControllerInterface
     }
 
     /**
-     * @param Request $request
-     *
      * @return Response
      */
-    private function handleGetRequest(Request $request): Response
+    private function handleGetRequest(): Response
     {
-        return $this->render('auth/login', $request);
+        return $this->render('auth/login');
     }
 
     /**
      * @param Request $request
      *
      * @return Response
+     * @throws FirebaseApiException
      */
     private function handlePostRequest(Request $request): Response
     {

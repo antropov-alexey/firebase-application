@@ -11,6 +11,8 @@ services:
       dockerfile: './build/Dockerfile'
     networks:
       - application
+    depends_on:
+      - redis
     volumes:
       - .:/web
 
@@ -25,3 +27,7 @@ services:
     volumes:
       - .:/web
       - ./build/nginx:/etc/nginx/conf.d
+  redis:
+    image: redis:latest
+    networks:
+      - application

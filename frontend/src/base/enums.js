@@ -1,6 +1,10 @@
 export const URLS = {
-    LOGIN_URL   : '/login',
-    REGISTER_URL: '/register',
+    MAIN_PAGE    : '/',
+    DOCUMENTS_URL: '/documents',
+    IMAGES_URL   : '/images',
+    LOGIN_URL    : '/login',
+    REGISTER_URL : '/register',
+    LOGOUT_URL   : '/logout',
 };
 
 export const LOGIN_ERROR_CODES = {
